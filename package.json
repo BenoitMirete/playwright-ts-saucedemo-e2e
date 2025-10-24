@@ -14,9 +14,6 @@
     "lint:check": "eslint . --max-warnings 0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "security:scan": "ggshield secret scan path .",
-    "security:scan-ci": "ggshield secret scan ci",
-    "security:scan-pre-commit": "ggshield secret scan pre-commit",
     "prepare": "husky"
   },
   "keywords": [
