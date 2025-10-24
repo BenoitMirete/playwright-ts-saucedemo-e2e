@@ -1,0 +1,73 @@
+# GitGuardian configuration file
+# Documentation: https://docs.gitguardian.com/ggshield/reference/configuration
+
+# Paths to scan (relative to the repository root)
+paths:
+  - '**/*'
+
+# Paths to ignore
+ignore:
+  - 'node_modules/**'
+  - '.git/**'
+  - 'dist/**'
+  - 'build/**'
+  - 'coverage/**'
+  - 'test-results/**'
+  - 'playwright-report/**'
+  - 'blob-report/**'
+  - 'playwright/.cache/**'
+  - 'playwright/.local/**'
+  - '*.log'
+  - '*.lock'
+  - 'pnpm-lock.yaml'
+  - 'package-lock.json'
+  - 'yarn.lock'
+
+# Secret detection settings
+secret:
+  # Minimum entropy for secret detection
+  min_entropy: 3.0
+
+  # Enable/disable specific detectors
+  detectors:
+    - 'api-key'
+    - 'aws'
+    - 'azure'
+    - 'gcp'
+    - 'github'
+    - 'gitlab'
+    - 'docker'
+    - 'kubernetes'
+    - 'generic'
+    - 'password'
+    - 'private-key'
+    - 'slack'
+    - 'stripe'
+    - 'twilio'
+
+# Output settings
+output:
+  # Output format: text, json, sarif
+  format: 'text'
+
+  # Verbose output
+  verbose: false
+
+  # Show secrets in output (use with caution)
+  show-secrets: false
+
+# CI/CD settings
+ci:
+  # Exit with error code if secrets are found
+  exit-zero: false
+
+  # Maximum number of secrets before failing
+  max-secrets: 0
+
+# Pre-commit settings
+pre-commit:
+  # Scan only staged files
+  staged-only: true
+
+  # Exit with error code if secrets are found
+  exit-zero: false

@@ -1,0 +1,7 @@
+# Run GitGuardian secret scanning
+echo "🔍 Running GitGuardian secret scan..."
+ggshield secret scan pre-commit
+
+# Run ESLint on staged files
+echo "🔧 Running ESLint and Prettier..."
+pnpm exec lint-staged

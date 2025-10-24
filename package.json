@@ -1,12 +1,54 @@
 {
   "name": "playwright-ts-saucedemo-e2e",
   "version": "1.0.0",
+  "type": "module",
   "description": "End-to-end testing automation project using Playwright with TypeScript on the SauceDemo e-commerce demo platform",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:check": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "security:scan": "ggshield secret scan path .",
+    "security:scan-ci": "ggshield secret scan ci",
+    "security:scan-pre-commit": "ggshield secret scan pre-commit",
+    "prepare": "husky"
   },
-  "keywords": ["playwright", "typescript", "e2e", "testing", "sauce", "saucedemo"],
+  "keywords": [
+    "playwright",
+    "typescript",
+    "e2e",
+    "testing",
+    "sauce",
+    "saucedemo"
+  ],
   "author": "Benoit Mirete <pro@roarth.fr>",
   "license": "ISC",
-  "packageManager": "pnpm@10.17.1"
+  "packageManager": "pnpm@10.17.1",
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@eslint/js": "^9.38.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "eslint": "^9.38.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-playwright": "^2.2.2",
+    "eslint-plugin-prettier": "^5.5.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
+    "prettier": "^3.6.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,md}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  }
 }
