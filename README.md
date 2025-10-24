@@ -24,6 +24,63 @@ This project provides comprehensive end-to-end testing automation for the SauceD
 - Node.js (v18 or higher)
 - pnpm (v10.17.1 or higher)
 
+## 🌍 Environment Information
+
+### **System Requirements**
+
+- **Operating System**: Linux, macOS, or Windows
+- **Node.js**: v18.0.0 or higher
+- **Package Manager**: pnpm v10.17.1 (recommended) or npm/yarn
+
+### **Browser Support**
+
+This project tests across multiple browsers and devices:
+
+- **Desktop Browsers**:
+  - Chrome (Chromium)
+  - Firefox
+  - Safari (WebKit)
+
+- **Mobile Devices**:
+  - Mobile Chrome (Pixel 5)
+  - Mobile Safari (iPhone 12)
+
+### **Configuration Files**
+
+- **`playwright.config.ts`**: Main Playwright configuration with browser settings and test options
+- **`tsconfig.json`**: TypeScript configuration with ES2022 target and strict mode
+- **`package.json`**: Project dependencies and scripts
+- **`eslint.config.js`**: ESLint configuration for code quality
+- **`commitlint.config.js`**: Commit message linting rules
+
+### **Development Environment Setup**
+
+1. **Node.js Version**: Ensure you're using Node.js v18 or higher
+
+   ```bash
+   node --version  # Should be v18.0.0+
+   ```
+
+2. **Package Manager**: Use pnpm for optimal performance
+
+   ```bash
+   npm install -g pnpm@10.17.1
+   ```
+
+3. **Browser Installation**: Playwright will automatically install required browsers
+   ```bash
+   pnpm exec playwright install
+   ```
+
+### **CI/CD Environment**
+
+For continuous integration environments:
+
+- Set `CI=true` environment variable
+- Tests will run with 2 retries on failure
+- Single worker mode for stability
+- HTML reports are generated automatically
+
 ## 📦 Installation
 
 1. Clone the repository:
