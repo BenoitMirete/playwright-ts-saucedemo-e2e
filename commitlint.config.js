@@ -1,25 +1,25 @@
-module.exports = {
-  extends: ["@commitlint/config-conventional"],
+export default {
+  extends: ['@commitlint/config-conventional'],
   rules: {
-    "type-enum": [
+    'type-enum': [
       2,
-      "always",
+      'always',
       [
-        "feat", // A new feature
-        "fix", // A bug fix
-        "docs", // Documentation only changes
-        "style", // Changes that do not affect the meaning of the code
-        "refactor", // A code change that neither fixes a bug nor adds a feature
-        "perf", // A code change that improves performance
-        "test", // Adding missing tests or correcting existing tests
-        "chore", // Changes to the build process or auxiliary tools
-        "ci", // Changes to our CI configuration files and scripts
-        "build", // Changes that affect the build system or external dependencies
-        "revert", // Reverts a previous commit
+        'feat',
+        'fix',
+        'docs',
+        'style',
+        'refactor',
+        'perf',
+        'test',
+        'chore',
+        'ci',
+        'build',
+        'revert',
       ],
     ],
-    "subject-case": [2, "always", "lower-case"],
-    "subject-max-length": [2, "always", 100],
-    "body-max-line-length": [2, "always", 100],
+    'subject-case': [2, 'always', 'lower-case'],
+    'subject-max-length': [2, 'always', 100],
+    'body-max-line-length': [2, 'always', 100],
   },
 };
