@@ -11,7 +11,11 @@ This project provides comprehensive end-to-end testing automation for the SauceD
 - **Playwright Framework**: Modern, fast, and reliable end-to-end testing
 - **TypeScript Support**: Type-safe testing with excellent IDE support
 - **SauceDemo Integration**: Testing on the popular e-commerce demo platform
+- **Multi-Browser Testing**: Chrome, Firefox, Safari, and mobile devices
 - **Modern Testing Practices**: Following industry best practices for test automation
+- **Parallel Execution**: Tests run in parallel for faster execution
+- **HTML Reports**: Detailed test reports with screenshots and traces
+- **CI/CD Ready**: Configured for continuous integration environments
 
 ## 🛠️ Prerequisites
 
@@ -33,9 +37,54 @@ cd playwright-ts-saucedemo-e2e
 pnpm install
 ```
 
-## 🔧 Configuration
+3. Install Playwright browsers:
 
-The project uses Playwright's configuration system. Key configuration options can be found in `playwright.config.ts`.
+```bash
+pnpm exec playwright install
+```
+
+## 🧪 Running Tests
+
+Run all tests:
+
+```bash
+pnpm test
+```
+
+Run tests with browser UI:
+
+```bash
+pnpm test:headed
+```
+
+Run tests in debug mode:
+
+```bash
+pnpm test:debug
+```
+
+Run tests with interactive UI:
+
+```bash
+pnpm test:ui
+```
+
+View test reports:
+
+```bash
+pnpm test:report
+```
+
+## 📁 Project Structure
+
+```
+playwright-ts-saucedemo-e2e/
+├── playwright.config.ts    # Playwright configuration
+├── tests/                  # Test files directory
+│   └── *.spec.ts          # Test specifications
+├── package.json           # Dependencies and scripts
+└── README.md             # Project documentation
+```
 
 ## 🏷️ Keywords
 
