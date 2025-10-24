@@ -37,9 +37,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Cache Playwright browsers
+      - name: Cache Playwright browsers (Chromium/Firefox only)
         uses: actions/cache@v4
         id: playwright-cache
+        if: matrix.browser != 'webkit'
         with:
           path: |
             ~/.cache/ms-playwright
@@ -52,13 +53,12 @@ jobs:
 
       - name: Install Playwright Browsers
         run: |
-          if [ "${{ steps.playwright-cache.outputs.cache-hit }}" != "true" ]; then
+          if [ "${{ matrix.browser }}" = "webkit" ]; then
+            # Always install WebKit fresh due to platform-specific dependencies
             pnpm exec playwright install --with-deps ${{ matrix.browser }}
-          else
-            # Always reinstall system dependencies for WebKit on Linux
-            if [ "${{ matrix.browser }}" = "webkit" ] && [ "${{ matrix.platform }}" = "ubuntu-latest" ]; then
-              pnpm exec playwright install --with-deps ${{ matrix.browser }}
-            fi
+          elif [ "${{ steps.playwright-cache.outputs.cache-hit }}" != "true" ]; then
+            # Install other browsers if not cached
+            pnpm exec playwright install --with-deps ${{ matrix.browser }}
           fi
 
       - name: Run Playwright tests
@@ -131,9 +131,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Cache Playwright browsers
+      - name: Cache Playwright browsers (Mobile Chrome only)
         uses: actions/cache@v4
         id: playwright-cache-mobile
+        if: matrix.browser != 'Mobile Safari'
         with:
           path: |
             ~/.cache/ms-playwright
@@ -147,13 +148,12 @@ jobs:
 
       - name: Install Playwright Browsers
         run: |
-          if [ "${{ steps.playwright-cache-mobile.outputs.cache-hit }}" != "true" ]; then
+          if [ "${{ matrix.browser }}" = "Mobile Safari" ]; then
+            # Always install Mobile Safari fresh due to platform-specific dependencies
             pnpm exec playwright install --with-deps
-          else
-            # Always reinstall system dependencies for WebKit
-            if [ "${{ matrix.browser }}" = "Mobile Safari" ]; then
-              pnpm exec playwright install --with-deps
-            fi
+          elif [ "${{ steps.playwright-cache-mobile.outputs.cache-hit }}" != "true" ]; then
+            # Install other mobile browsers if not cached
+            pnpm exec playwright install --with-deps
           fi
 
       - name: Run Mobile Playwright tests
