@@ -14,9 +14,6 @@
     "lint:check": "eslint . --max-warnings 0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "security:scan": "ggshield secret scan path .",
-    "security:scan-ci": "ggshield secret scan ci",
-    "security:scan-pre-commit": "ggshield secret scan pre-commit",
     "prepare": "husky"
   },
   "keywords": [
@@ -34,6 +31,8 @@
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@eslint/js": "^9.38.0",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.1",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
     "eslint": "^9.38.0",

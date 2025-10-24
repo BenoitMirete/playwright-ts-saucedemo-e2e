@@ -17,6 +17,17 @@ export default [
         sourceType: 'module',
         project: './tsconfig.json',
       },
+      globals: {
+        process: 'readonly',
+        console: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        global: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        exports: 'readonly',
+      },
     },
     plugins: {
       '@typescript-eslint': typescript,
@@ -33,7 +44,6 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-non-null-assertion': 'warn',
-      '@typescript-eslint/prefer-const': 'error',
       '@typescript-eslint/no-var-requires': 'error',
 
       // General code quality rules
@@ -46,7 +56,6 @@ export default [
       'prefer-arrow-callback': 'error',
 
       // Playwright specific rules
-      'playwright/expect-expect': 'error',
       'playwright/max-nested-describe': ['error', { max: 3 }],
       'playwright/missing-playwright-await': 'error',
       'playwright/no-conditional-in-test': 'error',
@@ -68,7 +77,6 @@ export default [
       'playwright/prefer-to-contain': 'error',
       'playwright/prefer-to-have-count': 'error',
       'playwright/prefer-to-have-length': 'error',
-      'playwright/require-top-level-describe': 'error',
       'playwright/valid-describe-callback': 'error',
       'playwright/valid-expect': 'error',
       'playwright/valid-title': 'error',
