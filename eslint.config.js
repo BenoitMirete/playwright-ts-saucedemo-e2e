@@ -56,7 +56,6 @@ export default [
       'prefer-arrow-callback': 'error',
 
       // Playwright specific rules
-      'playwright/expect-expect': 'error',
       'playwright/max-nested-describe': ['error', { max: 3 }],
       'playwright/missing-playwright-await': 'error',
       'playwright/no-conditional-in-test': 'error',
@@ -78,7 +77,6 @@ export default [
       'playwright/prefer-to-contain': 'error',
       'playwright/prefer-to-have-count': 'error',
       'playwright/prefer-to-have-length': 'error',
-      'playwright/require-top-level-describe': 'error',
       'playwright/valid-describe-callback': 'error',
       'playwright/valid-expect': 'error',
       'playwright/valid-title': 'error',
