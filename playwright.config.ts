@@ -1,4 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
+import { config } from 'dotenv';
+
+config({ quiet: true });
 
 export default defineConfig({
   testDir: './tests',
@@ -8,7 +11,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [['html', { open: 'never' }], ['list']],
   use: {
-    baseURL: 'https://www.saucedemo.com',
+    baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
     trace: 'on-first-retry',
     testIdAttribute: 'data-test',
   },
