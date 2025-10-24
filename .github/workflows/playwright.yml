@@ -44,14 +44,22 @@ jobs:
           path: |
             ~/.cache/ms-playwright
             ~/.cache/playwright
-          key: playwright-${{ matrix.browser }}-${{ hashFiles('pnpm-lock.yaml') }}
+          key: playwright-${{ matrix.browser }}-${{ matrix.platform }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
+            playwright-${{ matrix.browser }}-${{ matrix.platform }}-
             playwright-${{ matrix.browser }}-
             playwright-
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: |
+          if [ "${{ steps.playwright-cache.outputs.cache-hit }}" != "true" ]; then
+            pnpm exec playwright install --with-deps ${{ matrix.browser }}
+          else
+            # Always reinstall system dependencies for WebKit on Linux
+            if [ "${{ matrix.browser }}" = "webkit" ] && [ "${{ matrix.platform }}" = "ubuntu-latest" ]; then
+              pnpm exec playwright install --with-deps ${{ matrix.browser }}
+            fi
+          fi
 
       - name: Run Playwright tests
         run: pnpm exec playwright test --project=${{ matrix.browser }}
@@ -130,15 +138,23 @@ jobs:
           path: |
             ~/.cache/ms-playwright
             ~/.cache/playwright
-          key: playwright-mobile-${{ matrix.browser }}-${{ hashFiles('pnpm-lock.yaml') }}
+          key: playwright-mobile-${{ matrix.browser }}-ubuntu-latest-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
+            playwright-mobile-${{ matrix.browser }}-ubuntu-latest-
             playwright-mobile-${{ matrix.browser }}-
             playwright-mobile-
             playwright-
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
-        if: steps.playwright-cache-mobile.outputs.cache-hit != 'true'
+        run: |
+          if [ "${{ steps.playwright-cache-mobile.outputs.cache-hit }}" != "true" ]; then
+            pnpm exec playwright install --with-deps
+          else
+            # Always reinstall system dependencies for WebKit
+            if [ "${{ matrix.browser }}" = "Mobile Safari" ]; then
+              pnpm exec playwright install --with-deps
+            fi
+          fi
 
       - name: Run Mobile Playwright tests
         run: pnpm exec playwright test --project="${{ matrix.browser }}"

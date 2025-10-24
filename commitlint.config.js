@@ -18,8 +18,7 @@ export default {
         'revert',
       ],
     ],
-    'subject-case': [2, 'always', 'lower-case'],
-    'subject-max-length': [2, 'always', 100],
-    'body-max-line-length': [2, 'always', 100],
+    'subject-max-length': [2, 'always', 150],
+    'body-max-line-length': [2, 'always', 150],
   },
 };
