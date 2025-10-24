@@ -66,6 +66,7 @@ jobs:
         env:
           BASE_URL: ${{ vars.BASE_URL }}
           SAUCE_LOCKED_USER_USERNAME: ${{ vars.SAUCE_LOCKED_USER_USERNAME }}
+          SAUCE_STANDARD_USER_USERNAME: ${{ vars.SAUCE_STANDARD_USER_USERNAME }}
           SAUCE_DEMO_PASSWORD: ${{ secrets.SAUCE_DEMO_PASSWORD }}
 
       - name: Upload test results
@@ -163,6 +164,7 @@ jobs:
         env:
           BASE_URL: ${{ vars.BASE_URL }}
           SAUCE_LOCKED_USER_USERNAME: ${{ vars.SAUCE_LOCKED_USER_USERNAME }}
+          SAUCE_STANDARD_USER_USERNAME: ${{ vars.SAUCE_STANDARD_USER_USERNAME }}
           SAUCE_DEMO_PASSWORD: ${{ secrets.SAUCE_DEMO_PASSWORD }}
 
       - name: Upload mobile test results
