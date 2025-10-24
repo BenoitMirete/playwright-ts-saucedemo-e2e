@@ -1,0 +1,12 @@
+{
+  "name": "playwright-ts-saucedemo-e2e",
+  "version": "1.0.0",
+  "description": "End-to-end testing automation project using Playwright with TypeScript on the SauceDemo e-commerce demo platform",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["playwright", "typescript", "e2e", "testing", "sauce", "saucedemo"],
+  "author": "Benoit Mirete <pro@roarth.fr>",
+  "license": "ISC",
+  "packageManager": "pnpm@10.17.1"
+}
