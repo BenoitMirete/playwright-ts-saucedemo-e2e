@@ -1,5 +1,10 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
+export enum ErrorMessages {
+  DISABLED_USER = 'Epic sadface: Sorry, this user has been locked out.',
+  INVALID_CREDENTIALS = 'Epic sadface: Username and password do not match any user in this service',
+}
+
 export class AuthenticationLoginPage {
   readonly page: Page;
 
@@ -38,12 +43,12 @@ export class AuthenticationLoginPage {
     await this.fillPassword(password);
   }
 
-  public async errorMessageIsVisible(): Promise<void> {
+  public async errorMessageIsVisible(
+    errorMessage: ErrorMessages
+  ): Promise<void> {
     await this.$errorMessage.waitFor({ state: 'visible' });
-    const errorMessage = await this.getErrorMessage();
-    expect(errorMessage).toBe(
-      'Epic sadface: Username and password do not match any user in this service'
-    );
+    const errorMessageText = await this.getErrorMessage();
+    expect(errorMessageText).toBe(errorMessage);
   }
 
   public async hasErrorMessage(): Promise<boolean> {

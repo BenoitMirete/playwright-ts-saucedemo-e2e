@@ -1,4 +1,5 @@
 import { test } from '../base';
+import { ErrorMessages } from '../pages/authentication/AuthenticationLoginPage';
 
 const INVALID_CREDENTIALS = {
   username: 'invalid_username',
@@ -15,6 +16,22 @@ test.describe('authentication', { tag: ['@authentication'] }, () => {
   );
 
   test(
+    'login fails with disabled user',
+    { tag: ['@login'] },
+    async ({ authenticationLoginPage }) => {
+      await authenticationLoginPage.goto('/');
+      await authenticationLoginPage.fillLoginForm(
+        process.env.SAUCE_LOCKED_USER_USERNAME as string,
+        process.env.SAUCE_DEMO_PASSWORD as string
+      );
+      await authenticationLoginPage.submitLoginForm();
+      await authenticationLoginPage.errorMessageIsVisible(
+        ErrorMessages.DISABLED_USER
+      );
+    }
+  );
+
+  test(
     'login fails with invalid credentials',
     { tag: ['@login'] },
     async ({ authenticationLoginPage }) => {
@@ -24,7 +41,9 @@ test.describe('authentication', { tag: ['@authentication'] }, () => {
         INVALID_CREDENTIALS.password
       );
       await authenticationLoginPage.submitLoginForm();
-      await authenticationLoginPage.errorMessageIsVisible();
+      await authenticationLoginPage.errorMessageIsVisible(
+        ErrorMessages.INVALID_CREDENTIALS
+      );
     }
   );
 });
